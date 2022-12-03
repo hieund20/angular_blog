@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-post',
@@ -8,13 +7,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostComponent implements OnInit {
   post: string = '';
-  href: string = '';
+  @Input() articleName: string = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {
-    let articleName = this.route.snapshot.paramMap.get('article');
-    this.href = window.location.href;
-    this.post = './assets/posts/' + articleName + '.md';
+    this.post = './assets/posts/' + this.articleName + '.md';
   }
 }
