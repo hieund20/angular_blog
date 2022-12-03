@@ -1,18 +1,42 @@
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
+import { PostComponent } from './pages/blog/post/post.component';
+
+import { MarkdownModule } from 'ngx-markdown';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { BlogComponent } from './pages/blog/blog/blog.component';
+import { BodyContainerComponent } from './layout/body-container/body-container.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent,
+    BlogComponent,
+    PostComponent,
+    BodyContainerComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    MarkdownModule.forRoot({
+      loader: HttpClient,
+      sanitize: SecurityContext.NONE,
+    }),
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

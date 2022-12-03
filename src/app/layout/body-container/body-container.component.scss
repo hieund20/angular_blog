@@ -1,0 +1,12 @@
+.body-container {
+    position: relative;
+    z-index: 1;
+    display: block;
+    height: 100%;
+    overflow: auto;
+    color: #000000de;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
