@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatSelectionListChange } from '@angular/material/list';
+import { CategoryService } from 'src/app/services/category.service';
+import { PostService } from 'src/app/services/post.service';
+import { SendPostService } from '../service/send-post.service';
 
 @Component({
   selector: 'app-blog',
@@ -7,21 +10,44 @@ import { MatSelectionListChange } from '@angular/material/list';
   styleUrls: ['./blog.component.scss'],
 })
 export class BlogComponent implements OnInit {
-  categories: any[] = [
-    {
-      key: 'TECH',
-      cate: 'Technical',
-    },
-    {
-      key: 'LIFE',
-      cate: 'Cuộc sống',
-    },
-  ];
+  categories: any[] = [];
   posts: any[] = [];
+  tocList: any[] = [];
 
-  ngOnInit(): void {}
+  constructor(
+    private postService: PostService,
+    private cateService: CategoryService,
+    public sendPostService: SendPostService
+  ) {}
+
+  ngOnInit(): void {
+    this.getAllCategory();
+    this.getAllPost();
+  }
+
+  getAllCategory() {
+    this.cateService.getCategories().subscribe((res) => {
+      this.categories = res;
+    });
+  }
+
+  getAllPost() {
+    this.postService.getPosts().subscribe((res) => {
+      this.posts = res;
+    });
+  }
 
   onChangeCategory(data: MatSelectionListChange) {
-    let path = `../../../../assets/posts/${data.source._value}`;
+    let list: any[] = [];
+    this.posts.forEach((el: any) => {
+      if (el.category_id === data.source._value?.toString()) {
+        list.push(el);
+      }
+    });
+    this.tocList = list;
+  }
+
+  onChoosePost(post: any) {
+    this.sendPostService.postData.next(post.content);
   }
 }

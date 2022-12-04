@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SendPostService } from '../service/send-post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,11 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
   post: string = '';
-  @Input() articleName: string = '';
 
-  constructor() {}
+  constructor(public sendPostService: SendPostService) {}
 
   ngOnInit(): void {
-    this.post = './assets/posts/' + this.articleName + '.md';
+    this.sendPostService.postData.subscribe((res) => {
+      this.post = res;
+    });
   }
 }

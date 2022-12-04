@@ -7,24 +7,26 @@
         [multiple]="false"
         (selectionChange)="onChangeCategory($event)"
       >
-        <mat-list-option *ngFor="let cate of categories" [value]="cate.key">
-          {{ cate.cate }}
+        <mat-list-option *ngFor="let cate of categories" [value]="cate._id">
+          {{ cate.name }}
         </mat-list-option>
       </mat-selection-list>
     </mat-drawer>
     <mat-drawer-content class="sidenav-main-content">
       <div class="main-content-container">
         <div class="view-text-content">
-          <app-post [articleName]="'post1'"></app-post>
+          <app-post></app-post>
         </div>
         <div class="table-of-contents">
           <div class="toc-container">
             <div class="toc-heading">Overview Content</div>
             <nav>
-              <a class="toc-link"> Simple divider </a>
-              <a class="toc-link"> Simple divider </a>
-              <a class="toc-link"> Simple divider </a>
-              <a class="toc-link"> Simple divider </a>
+              <a
+                *ngFor="let item of tocList"
+                class="toc-link"
+                (click)="onChoosePost(item)"
+                >{{ item.title }}
+              </a>
             </nav>
           </div>
         </div>
