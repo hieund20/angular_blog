@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CategoryService {
-  protected path = 'http://localhost:3000';
+  protected path = 'https://angular-blog-be.herokuapp.com';
 
   constructor(protected httpClient: HttpClient) {}
 

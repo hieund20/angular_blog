@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PostService {
-  protected path = 'http://localhost:3000';
+  //http://localhost:3000
+  protected path = 'https://angular-blog-be.herokuapp.com';
 
   constructor(protected httpClient: HttpClient) {}
 
