@@ -17,6 +17,8 @@ import { MarkdownModule } from 'ngx-markdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { AboutComponent } from './pages/about/about.component';
+import { ContractComponent } from './pages/contract/contract.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { MatListModule } from '@angular/material/list';
     BlogComponent,
     PostComponent,
     BodyContainerComponent,
+    AboutComponent,
+    ContractComponent,
   ],
   imports: [
     BrowserModule,
